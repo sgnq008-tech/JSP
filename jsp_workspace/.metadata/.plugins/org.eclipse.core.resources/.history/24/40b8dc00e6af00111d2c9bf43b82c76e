@@ -1,0 +1,20 @@
+package com.jdbc;
+
+public class TempMemberDAO {
+	
+// DB 연동
+
+	private final String jDBC_DRIVER="oracle.jdbc.driver.OracleDriver"; // (경로)
+	private final String jDBC_URL="jdbc:oralc:thin:@localhost:1521:orcl"; //
+	private final String USER="scott";
+	private final String PASS="tiger";
+	
+	public TempMemberDAO() {
+		try {
+			Class.forName(jDBC_DRIVER)
+		} catch (Exception e) {
+			System.out.println("Error : JDBC 드라이버 로딩 실패 !!!!");
+		}
+	}
+
+}

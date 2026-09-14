@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.Vector" %>
+<%-- 본인의 VO 패키지를 import 해주세요 (예: import="temp.TempMemberVO") --%>
+<%@ page import="패키지명.TempMemberVO" %>
+
+<%-- 1. DAO 빈 객체 생성 --%>
+<jsp:useBean id="dao" class="패키지명.TempMemberDAO" scope="page" />
+
+<%
+    // 2. DAO를 통해 회원 목록 가져오기
+    Vector<TempMemberVO> vecList = dao.getMemberList();
+    int counter = (vecList != null) ? vecList.size() : 0;
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Beans를 사용한 데이터베이스</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#ffffcc">
+
+<h2>Beans를 사용한 데이터베이스</h2>
+<h3>회원정보</h3>
+
+<table bordercolor="#0000ff" border="1">
+    <tr>
+        <td><strong>ID</strong></td>
+        <td><strong>PASSWD</strong></td>
+        <td><strong>NAME</strong></td>
+        <td><strong>MEM_NUM1</strong></td>
+        <td><strong>MEM_NUM2</strong></td>
+        <td><strong>E_MAIL</strong></td>
+        <td><strong>PHONE</strong></td>
+        <td><strong>ZIPCODE/ADDRESS</strong></td>
+        <td><strong>JOB</strong></td>
+    </tr>
+
+<%
+    if (vecList != null && !vecList.isEmpty()) {
+        for (int i = 0; i < vecList.size(); i++) {
+            TempMemberVO vo = vecList.get(i);
+%>
+    <tr>
+        <td><%= vo.getId() %></td>
+        <td><%= vo.getPasswd() %></td>
+        <td><%= vo.getName() %></td>
+        <td><%= vo.getMem_num1() %></td>
+        <td><%= vo.getMem_num2() %></td>
+        <td><%= vo.getE_mail() %></td>
+        <td><%= vo.getPhone() %></td>
+        <td><%= (vo.getZipcode() != null ? vo.getZipcode() : "") + " " + (vo.getAddress() != null ? vo.getAddress() : "") %></td>
+        <td><%= vo.getJob() %></td>
+    </tr>
+<%
+        } // end for
+    } // end if
+%>
+</table>
+
+<br>
+total records : <%= counter %>
+
+</body>
+</html>

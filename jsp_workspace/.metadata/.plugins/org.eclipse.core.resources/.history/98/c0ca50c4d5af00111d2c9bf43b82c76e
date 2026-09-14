@@ -1,0 +1,14 @@
+select * from tab;
+
+create table tempmember (
+  id varchar2(20) not null,
+  passwd varchar2(20),
+  name varchar2(20),
+  mem_num1 varchar2(6),
+  mem_num2 varchar2(7),
+  e_mail varchar2(30),
+  phone varchar2(30),
+  zipcode varchar2(6),
+  
+
+);

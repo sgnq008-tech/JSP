@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <!-- 서블릿 수동설정 -->
+  <servlet>
+                  <servlet-name>my</servlet-name> 
+                  <servlet-class>com.test.HelloServlet</servlet-class>
+ </servlet>
+ <servlet-mapping>
+                  <servlet-name>my</servlet-name>
+                  <url-pattern>/Hello</url-pattern>
+ </servlet-mapping> 
+ <servlet>
+                  <servlet-name>Login</servlet-name> 
+                  <servlet-class>com.test.LoginServlet</servlet-class>
+ </servlet>
+ <servlet-mapping>
+                  <servlet-name>Login</servlet-name>
+                  <url-pattern>/login/Login</url-pattern>
+ </servlet-mapping>
+ <servlet>
+                  <servlet-name>Sport</servlet-name> 
+                  <servlet-class>com.test.SportServlet</servlet-class>
+ </servlet>
+ <servlet-mapping>
+                  <servlet-name>Sport</servlet-name>
+                  <url-pattern>/test/Sport</url-pattern>
+ </servlet-mapping>
+  <servlet>
+                  <servlet-name>Member</servlet-name> 
+                  <servlet-class>com.test.MemberServlet</servlet-class>
+ </servlet>
+ <servlet-mapping>
+                  <servlet-name>Member</servlet-name>
+                  <url-pattern>/test/Member</url-pattern>
+ </servlet-mapping>
+ 
+ <context-param>
+       <param-name>company</param-name>
+       <param-value>Globalin</param-value>
+ </context-param>
+ 
+ <context-param>
+       <param-name>manager</param-name>
+       <param-value>Jung Sub Kim</param-value>
+ </context-param>
+ 
+ <servlet>
+             <servlet-name>InitParam</servlet-name>
+             <servlet-class></servlet-class>
+ </servlet>
+ <servlet-mapping>
+ 
+ </servlet-mapping>
+ 
+ 
+</web-app>

@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>좋아하는 운동 및 성별</title>
+</head>
+<body>
+<h1>좋아하는 운동 및 성별</h1>
+<form action="Sport" method="post">
+                <fieldset>
+                                <legend>좋아하는 운동 및 성별</legend>
+                                <ul>
+                                <li>
+                                       <label>야구</label>
+                                       <input type ="checkbox" name="sports" value ="야구">                               
+                                </li>
+                                <li>
+                                       <label>농구</label>
+                                       <input type ="checkbox" name="sports" value ="농구">   
+                                </li>
+                                <li>
+                                       <label>축구</label>
+                                       <input type ="checkbox" name="sports" value ="축구">  
+                                </li>
+                                </ul>                
+                </fieldset>
+
+</form>
+
+</body>
+</html>

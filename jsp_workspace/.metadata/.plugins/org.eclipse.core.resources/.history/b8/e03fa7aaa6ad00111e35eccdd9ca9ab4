@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+         request.setCharacterEncoding("utf-8");
+%>
+<jsp:useBean id="msg" class="com.sample.simpledata"></jsp:useBean>
+<jsp:setProperty name="msg" property="message"><</jsp:setProperty>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>빈즈 프로그램</h1>
+<hr color="red"><br>
+<font size="5">
+메시지 : <jsp:getProperty property="msg" name="message"/>
+</font>
+</body>
+</html>

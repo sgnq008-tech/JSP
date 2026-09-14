@@ -1,0 +1,40 @@
+package com.bbs;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/visitinvert")
+public class visitinvert extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+		
+		request.setCharacterEncoding("utf-8");
+		//wirte.html에서 요청 한 값을 읽어옴
+		
+		String writer = request.getParameter("writer");
+		String memo = request.getParameter("writer");
+		
+		System.out.println("작성자 : "+writer);
+		System.out.println("내  용 : "+writer);
+		
+		//데이터베이스에 저장 Query 
+		String sql = "insert into visit"
+
+	}
+
+}

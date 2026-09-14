@@ -1,0 +1,33 @@
+package com.sample;
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
+/* 
+ * 페이지 이동 방식
+ *    - method를 호출을 통해서 페이지를 이동할 수 있는 방법은 두가지가 있다.
+ *    - forward, redirect 방식 
+ * 
+ */
+
+
+
+@WebServlet("/Source")
+public class Source extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		processRequest(request, response);
+	}
+	
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request, response);
+
+}
+	
+}

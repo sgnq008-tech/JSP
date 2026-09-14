@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>방명록</title>
+</head>
+<body>
+<form action="/VisitInsert" method="post">
+                 <table align="center" width ="500" border="1">
+                      
+                 
+                 </table>
+
+
+</form>
+</body>
+</html>

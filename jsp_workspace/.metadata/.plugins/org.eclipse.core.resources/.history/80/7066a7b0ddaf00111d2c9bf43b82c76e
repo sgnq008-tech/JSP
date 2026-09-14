@@ -1,0 +1,42 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Catch"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.sql.*"%>
+<%
+ Class.forName("oracle.jdbc.driver.OracleDriver");
+Connection con = null;
+Statement stmt = null;
+ResultSet rs = null;
+
+try {
+	
+
+
+%>
+
+<% %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP에서 데이터베이스 연동</title>
+</head>
+<body>
+
+<%}catch(SQLException ss){
+	
+}catch(Exception ee){
+	
+}finally {
+	if(rs != null)
+		try {
+			rs.close();			
+		}Catch(SQLException s){
+			s.printStackTrace();
+		}
+}
+
+%>
+
+<% %>
+</body>
+</html>

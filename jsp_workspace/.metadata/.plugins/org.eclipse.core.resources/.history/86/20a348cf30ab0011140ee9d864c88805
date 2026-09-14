@@ -1,0 +1,37 @@
+package com.sample;
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
+
+/* 초기 파라미터
+ * 
+ *   1.ServletConfig
+ *      1. ServletConfig 객체는 Container가 서블릿을 생성할떄
+ *          생성되는 객체이다
+ *      
+ *      2. web.xml을 읽어서 이름/쌍으로 된 초기화 파라미터
+ */
+
+//@WebServlet("/InitParam")
+public class InitParam extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public void init() throws ServletException {
+		
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+	
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+}

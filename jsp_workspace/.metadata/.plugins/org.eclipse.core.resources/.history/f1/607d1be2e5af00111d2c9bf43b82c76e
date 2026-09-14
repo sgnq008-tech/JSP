@@ -1,0 +1,12 @@
+package com.jdbc;
+
+public class TempMemberDAO {
+	
+// DB 연동
+
+	private final String jDBC_DRIVER="oracle.jdbc.driver.OracleDriver";
+	private final String jDBC_URL="jdbc:oralc:thin:@localhost:1521:orcl";
+	private final String USER="scott";
+	private final String PASS="tiger";
+
+}

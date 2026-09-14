@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%--
+      속성과 스코프
+      
+        - 속성은 PageContext, HttpServletRequest, HttpSession,
+          ServletContext 객체 중 하나에 설정해 놓은 객체를 의미함
+          
+        - 속성은 객체 Map 인스턴스와 마찬가지로 이름/값의 형태의 쌍으로 저장되어짐
+        - 각각의 객체에 저장된 속성들은 서로 다른 생존범위(scope)를 가진다.
+ --%>
+</body>
+</html>

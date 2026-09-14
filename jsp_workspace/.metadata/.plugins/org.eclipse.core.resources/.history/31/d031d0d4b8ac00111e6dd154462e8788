@@ -1,0 +1,23 @@
+<%@page import="javax.print.DocFlavor.STRING"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+ <%-- JSP의 주석 --%>
+ <!-- HTML의 주석 -->
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP Script</title>
+</head>
+<body>
+<%/*
+
+
+
+
+*/
+String name = "홍길동"%>
+</body>
+</html>

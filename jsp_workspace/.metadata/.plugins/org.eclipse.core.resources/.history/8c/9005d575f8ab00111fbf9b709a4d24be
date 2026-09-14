@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>방명록</title>
+</head>
+<body>
+<form action="/VisitInsert" method="post">
+                 <table align="center" width ="500" border="1">
+                    <tr>
+                         <th width="70">작성자</th>
+                         <td width="430">
+                            <input type="text" name="writer" size="50">                         
+                         </td>
+                    </tr>
+                    
+                    <tr>
+                         <th>내용</th>
+                         <td>
+                                  <textarea rows="7" cols="50" name="memo"></textarea>
+                         </td>
+                    
+                    </tr>  
+                 
+                 </table>
+
+
+</form>
+</body>
+</html>

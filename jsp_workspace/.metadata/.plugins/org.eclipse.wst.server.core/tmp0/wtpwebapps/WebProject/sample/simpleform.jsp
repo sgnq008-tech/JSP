@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%--
+          자바빈즈 : 자바 클래스 중에 자바빈즈 규약에 맞게 작성한 클래스임
+          멤버변수와 setter/getter 메소드로 이루어져 있다.
+          값을 저장하는 Value Object(VO)로 활용한다
+          <jsp:useBean> 액션 태그
+             -  객체의 이름과 사용범위, 빈의 저장위치 등을 통해서 객체 생성된다.
+                JSP의 자바코드에서는 action의 id 특성에 지정된 값을 통해서
+                객체를 참조한다.
+                
+             - 형식 : <jsp:useBean id="빈 이름" scope="범위" class="빈의 저장위치"
+             - id : 객체명(인스턴스를 식별하는 이름)
+             - scope : 객체를 참조하는 유효범위
+             - class : 완전한 형태의 클래스 이름 
+             
+             <jsp:setProperty> : 빈의 속성에 값을 설정하는 태그
+           형식 : <jsp:setProperty name="" property="프로퍼티명" value=""
+          name : <jsp:useBean> 태그에 정의 빈 이름
+          pr
+            
+             <jsp:getsetProperty> : 빈의 속성에 값을 얻어오는 태그
+           형식: <jsp:setProperty name="빈 이름" > 
+--%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바빈즈</title>
+</head>
+<body>
+<hr color="red"><br>
+<form action="simpleBean.jsp" method="post">
+
+메시지 : <input type="text" name="message">
+           <input type="submit" value="전송">
+</form>
+</body>
+</html>

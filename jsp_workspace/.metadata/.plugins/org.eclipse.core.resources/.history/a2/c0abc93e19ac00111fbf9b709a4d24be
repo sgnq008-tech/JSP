@@ -1,0 +1,45 @@
+package com.login;
+
+import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.servlet.Servlet.*;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
+
+
+
+@WebServlet("/LoginCheck")
+public class LoginCheck extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+	
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("utf-8");
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		
+		String dbID="admin";
+		String dbPWD="1234"; //DB 있다 가정하에 만듬
+		
+		// 데이터베이스에 저장된 id, pwd와 로그인폼에서 
+		// 가져온 정보를 비교한다.
+		
+		if(dbID.equals(id)) {
+			
+		}
+		
+		
+	}
+	
+}

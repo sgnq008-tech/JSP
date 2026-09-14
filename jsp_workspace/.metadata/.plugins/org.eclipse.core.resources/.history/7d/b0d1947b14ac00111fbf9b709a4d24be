@@ -1,0 +1,81 @@
+package com.login;
+
+import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.servlet.Servlet.*;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
+import java.sql.*;
+
+
+
+@WebServlet("/Login")
+public class Login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+    
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	response.setContentType("text/html;charset=utf-8");
+	PrintWriter out = response.getWriter();
+	try {
+		HttpSession session = request.getSession(false);
+		if(session != null) {// 로그인이 성공한 경우
+			String sessionId = session.getId();
+			System.out.println("세션 아이디 :"+sessionId);
+			String user = (String)session.getAttribute("user");
+			
+			out.println("<html>");
+			out.println("<body>");
+			
+			       out.println("<table border= '1' width= '300'>");
+			       
+		    out.println("<tr>");
+                   out.println("<td width= '300' align ='center'>");
+                   out.println(user+"님이 로그인 하셨습니다.</td>");
+			out.println("</tr>");			
+            
+			out.println("<tr>");
+			        out.println("<td align ='center'>");
+			        out.println("<a href='#'>회원정보</a>");
+			        out.println("<a href='Logout'>로그아웃</a>");
+			        out.println("</td>");
+			out.println("</tr>");
+			
+			out.println("</table>");
+			
+			out.println("</body>");
+			out.println("</html>");
+			
+		}else {// 로그인이 실패한 경우
+			out.println("<html>");
+			out.println("<body>");
+			out.println("<form action='LoginCheck' method='post'>");
+			out.println("<table border= '1' width= '300'>");
+			
+			
+			
+			
+			out.println("</table>");
+			out.println("</body>");
+			out.println("</html>");			
+		}
+		
+		
+	}finally {
+		
+}
+}
+	
+}

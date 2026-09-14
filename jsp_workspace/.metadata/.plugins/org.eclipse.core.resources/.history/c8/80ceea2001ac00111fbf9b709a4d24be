@@ -1,0 +1,84 @@
+package com.bbs;
+
+import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.servlet.Servlet.*;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
+import java.sql.*;
+
+
+@WebServlet("/VisitInsert")
+public class visitinvert extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request,response);
+	}
+
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		request.setCharacterEncoding("utf-8");
+		//wirte.html에서 요청 한 값을 읽어옴
+		response.setContentType("text/html;charset=utf-8");
+		
+		String writer = request.getParameter("writer");
+		String memo = request.getParameter("writer");
+		
+		System.out.println("작성자 : "+writer);
+		System.out.println("내  용 : "+writer);
+		
+		//데이터베이스에 저장 Query 
+		String sql = "insert into visit(no,writer,memo,regdate) "
+				+ "values(visit_seq.nextval, ?, ?, sysdate)";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			//드라이버 검색
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			//데이터베이스 연결
+			con = DriverManager.getConnection(
+					"jdbc:oracle:thin:@localhost:1521:orcl",
+					"scott","tiger");
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, writer);
+			pstmt.setString(2, memo);
+			
+			// 바인딩 쿼리 실행
+			pstmt.executeUpdate();
+			
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ss) {
+			ss.printStackTrace();
+		}		
+		
+		finally {
+			try {
+				if(pstmt != null)pstmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		
+		
+		try {
+			if(con != null)con.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	}
+
+}

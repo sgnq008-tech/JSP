@@ -1,0 +1,44 @@
+<%@page import="javax.print.DocFlavor.STRING"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+ <%-- JSP의 주석 --%>
+ <!-- HTML의 주석 -->
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP Script</title>
+</head>
+<body>
+
+<%!
+        // 변수선언
+        String declation="선언문입니다.";
+
+        // 메소드 선언
+        public String declationMethod() {
+        	return
+        }
+%>
+<%
+/*
+자바주석
+*/
+  String name = "홍길동";
+
+  String script="스크립트입니다.";
+  
+  String comment="주석문입니다.";
+  
+  out.println("내장 객체 이용한 출력 : "+declation+"<br><br>");
+
+ 
+ %>
+ <%=name %>
+ 변수 출력 :<%=declation %><br><br>
+ 
+ <%--(=는 들어가면 출력문이됨)--%>
+</body>
+</html>

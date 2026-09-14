@@ -1,0 +1,30 @@
+<%@page import="javax.print.DocFlavor.STRING"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+ <%-- JSP의 주석 --%>
+ <!-- HTML의 주석 -->
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP Script</title>
+</head>
+<body>
+<%
+/*
+자바주석
+*/
+  String name = "홍길동";
+
+  String script="스크립트입니다.";
+  
+  String document="주석입니다.";
+
+ 
+ %>
+ <%=name %>
+ <%--(=는 들어가면 출력문이됨)--%>
+</body>
+</html>

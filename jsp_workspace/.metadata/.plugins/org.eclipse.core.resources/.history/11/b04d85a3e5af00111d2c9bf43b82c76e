@@ -1,0 +1,12 @@
+package com.jdbc;
+
+public class TempMemberDAO {
+	
+// DB 연동
+
+	private final String jDBC_DRIVER="";
+	private final String jDBC_URL="";
+	private final String USER="scott";
+	private final String PASS="tiger";
+
+}

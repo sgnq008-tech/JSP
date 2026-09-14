@@ -1,0 +1,59 @@
+package com.jdbc;
+
+import java.util.Vector;
+import java.sql.*;
+
+public class TempMemberDAO {
+	
+// DB 연동
+
+	private final String jDBC_DRIVER="oracle.jdbc.driver.OracleDriver"; // (경로)
+	private final String jDBC_URL="jdbc:oralc:thin:@localhost:1521:orcl"; //
+	private final String USER="scott";
+	private final String PASS="tiger";
+	
+	public TempMemberDAO() {
+		try {
+			Class.forName(jDBC_DRIVER);
+		} catch (Exception e) {
+			System.out.println("Error : JDBC 드라이버 로딩 실패 !!!!");
+		}
+	}
+	
+	public Vector<TempMemberVO> getMemberlist() {
+		
+		Connection con = null;
+	    Statement stmt = null;
+	    ResultSet rs = null;
+	    Vector<TempMemberVO> vecList=
+	    new Vector<TempMemberVO>();
+	    
+	    try {
+	    	con = DriverManager.getConnection(jDBC_URL,USER,PASS);
+			String sql = "select * from tempmember";
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				TempMemberVO vo = new TempMemberVO();
+				vo.setId(rs.getString("id"));
+				vo.setPasswd(rs.getString("passwd"));
+				vo.setName(rs.getString("name"));
+				vo.getMem_num1(rs.getString("mem_num1"));
+				vo.getMem_num2(rs.getString("mem_num2"));
+				vo.getAddress(rs.getString("mem_num2"));
+	    }
+	    
+		} catch (Exception ex) {
+			System.out.println("Exception"+ex);
+		}finally {
+			if(rs !=null)try {rs.close();}catch (SQLException e) {}
+			if(stmt !=null)try {rs.close();}catch (SQLException e) {}
+			if(con !=null)try {rs.close();}catch (SQLException e) {}
+	    
+	    return vecList;
+	}
+	
+	
+
+}
+	}
