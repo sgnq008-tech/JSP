@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>클라이언트 및 서버의 정보</title>
+</head>
+<body>
+클라이언트 IP : <%=request.getRemoteAddr() %>
+요청 정보길이 : <%=request.getContentLength() %>
+요청 정보 인코딩 : <%=request.getProtocol() %>
+요청 컨텐트 타입:	<%=request.getMethod() %>
+요청 정보 프로토콜:	<%=request.getRequestURL().toString() %>
+요청 정보 전송 방식 :	<%=request.getRequestURL().toString() %>
+요청 URL:	<%=request.getRequestURL().toString() %>
+요청 URI:	<%=request.getContextPath() %>
+컨텍스트 경로:	<%=request.getContextPath() %>
+서버 이름 :	<%=request.getServerPort().toString() %>
+서버 포트 :
+</body>
+</html>

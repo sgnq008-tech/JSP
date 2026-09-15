@@ -1,0 +1,80 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ page import = "java.util.*" %>
+<%@ page import = "com.memberone.*" %>
+<jsp:useBean id="dao" class="com.memberone.studentDAO" scope="page" />
+	     
+<%
+	request.setCharacterEncoding("utf-8");
+	String check = request.getParameter("check");
+	String dong = request.getParameter("dong");
+	
+	Vector<ZipcodeVO> zipcodeList = dao.zipcodeRead(dong);
+	int totalList = zipcodeList.size();
+	
+ %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>우편번호검색</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script type = "text/javascript" src="script.js"></script>
+</head>
+<body bgcolor="#ffffcc">
+<div align= "center">
+<b>우편번호 찾기</b>
+<form action = "zipCheck.jsp" method="post" name="zipForm">
+<table>
+		<tr>
+				<td> 동 이름 입력: <input type="text" name="dong">
+						<input type ="button" value="검색" 
+						onclick="dongCheck()">
+				</td>
+		</tr>
+</table>
+<input type ="hidden" name ="check" value = "n">
+</form>
+<table>
+	<%	//데이터 없으면
+		if(check.equals("n")){
+			if(zipcodeList.isEmpty()){
+	
+	%>
+
+<tr>
+	<td align = "center">검색된 결과가 없습니다.</td><br>
+</tr>
+<%
+		}else {
+%>
+<tr>
+	<td align="center"><br>
+	※ 검색후, 아래 우편번호를 클릭하면 자동으로 주소입력됩니다.
+	</td>
+</tr>
+<%
+	for(int i = 0; i<totalList; i++){
+		ZipcodeVO vo = ZipcodeList.elementAt(i);
+		String tZipcode = vo.getZipcode(); 
+	}
+
+%>
+<%
+			}//end for
+		}//end else
+	}//end if
+%>
+
+
+<tr>
+	<td align = "center">
+			<a href = "javascript:this.close()">닫기</a>
+	</td>
+</tr>
+
+</table>
+</div>
+</body>
+</html>

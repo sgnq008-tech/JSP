@@ -1,0 +1,12 @@
+package com.memberone;
+
+public class studentVO {
+	private String id;
+	private String pass;
+	private String phone1;
+	private String phone2;
+	private String phone3;
+	private String email;
+	private String zip;
+	
+}

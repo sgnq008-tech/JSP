@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Include Example</title>
+</head>
+<body>
+
+<h2>include 지시어</h2>
+
+<%
+String name = "GilDong Hong";
+%>
+
+<%@ include file="top.jsp" %>
+
+include 를 포함
+
+<%@ include file="bottom.jsp" %>
+
+</body>
+</html>

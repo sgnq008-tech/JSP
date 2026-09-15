@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%--
+	자바빈즈 : 자바 클래스 중에 자바빈즈 규약에 맞게 작성한 클래스임
+				멤버변수와 setter/getter
+
+
+ --%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

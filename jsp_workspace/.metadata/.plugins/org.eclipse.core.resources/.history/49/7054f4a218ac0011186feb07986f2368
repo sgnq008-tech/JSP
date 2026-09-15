@@ -1,0 +1,28 @@
+package com.login;
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
+
+
+@WebServlet("/LoginChectk")
+public class LoginChectk extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		processRequest(request, response);
+	}
+protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+	}
+
+}

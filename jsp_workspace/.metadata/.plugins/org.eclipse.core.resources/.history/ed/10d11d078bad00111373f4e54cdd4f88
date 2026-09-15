@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    <%
+    String code = request.getParameter("code");
+    String viewPageURI = null;
+    
+    if (code. equals("A")){
+    }else if(code.equals("B")){
+    	
+    }else if(code.equals("C")){
+    	
+    }
+    %>
+    <jsp:forward page="<%= viewPageURI %>"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

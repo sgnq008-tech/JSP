@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>고객 가입</title>
+</head>
+<body>
+<form action= "add.jsp" method = "post">
+<table border = "1" width = "300">
+		<tr>
+		
+		</tr>
+
+</table>
+
+
+</form>
+
+</body>
+</html>

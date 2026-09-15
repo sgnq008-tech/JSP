@@ -1,0 +1,66 @@
+package com.login;
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
+
+
+
+@WebServlet("/Login")
+public class Login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		processRequest(request, response);
+	}
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		try {
+			HttpSession session = request.getSession(false);
+			if(session != null) {// 로그인이 성공한 경우
+				String sessionId = session.getID();
+				System.out.println("세션아이디:"+sessionID);
+				String user = (String)session.getAttribute("user");
+				out.println("<html>");
+				out.println("<body>");
+				
+				out.println("<table border = '1' width ='300'>");
+				out.println("<tr>");
+				out.println("<td width ='300' ='center'>");
+				out.println("</tr>");
+				
+				out.println("</td align ='center'>");
+				
+
+				out.println("<tr>");
+				
+				out.println("</tr>");
+				out.println("</table>");
+				out.println("</body>");
+				out.println("</html>");
+			}
+			else {//로그인이 안된경우
+				out.println("<html>");
+				out.println("<body>");
+				
+				out.println("</body>");
+				out.println("</html>");
+			}
+		}finally {
+			out.close();
+		}
+		
+	}
+	
+
+}

@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<link href = "style.css" rel = "stylesheet" type= "text/css">
+</head>
+<body>
+
+</body>
+<form action="regProc.jsp" name="regForm" method="post">
+<table border="1">
+	<tr>
+		<td colspan="2" align="center"> 회원 가입 정보 입력</td>
+	</tr>
+
+	<tr>
+		<td align="right" >아이디 :</td>
+		<td>
+			<input type = "text" name = "id">&nbsp;
+			<input type = "button" value = "중복확인" onclick="#">
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="right"> 비밀번호 :</td>
+		<td>
+			<input type = "password" name = "pass">
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="right"> 비밀번호 확인:</td>
+		<td>
+			<input type = "password" name = "repass">
+		</td>
+	</tr>
+		<td align = "right"> 이름 : </td>
+
+	
+
+</table>
+
+</form>
+</html>

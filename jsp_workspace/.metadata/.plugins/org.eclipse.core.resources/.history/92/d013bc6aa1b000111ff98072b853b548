@@ -1,0 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <jsp:useBean id="dao" class = "com.memberone.studentDAO" /><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ID 중복 체크</title>
+</head>
+<body>
+
+</body>
+</html>

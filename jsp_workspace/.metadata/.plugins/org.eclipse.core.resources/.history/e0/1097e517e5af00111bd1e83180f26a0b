@@ -1,0 +1,13 @@
+package com.jdbc;
+
+public class TempMemberVO {
+	private String id;
+	private String passwd;
+	private String name;
+	private String mem_num1;
+	private String mem_num2;
+	private String e_mail;
+	private String phone;
+	private String zipcode;
+	
+}

@@ -1,0 +1,9 @@
+package com.jdbc;
+
+public class TempMemberDAO {
+	private final String JDBC_DRIVER="";
+	private final String JDBC_URL="";
+	private final String USER="";
+	
+	private fianal String PASS=:"";
+}

@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" %>
+<%--<%@ page buffer = "1kb" autoFlush="true" %>--%>
+
+	<%@ page buffer ="none" autoFlush="true" %>
+	<%--buffer 속성이 none으로 설정되면 autoFlush 속성은 false로 설정할 수 없다.
+	이유: 버퍼가 없는 상태에서는 버퍼가 대한 예외가 발생할 수 없기 때문임
+	--%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<% for(int i = 0; i <1000; i++){ %>
+草
+<%} %>
+
+</body>
+</html>

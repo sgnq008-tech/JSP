@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import = "java.util.*, com.jdbc.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Beans를 이용한 데이터베이스</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#ffffcc">
+<h2>Beans를 이용한 데이터베이스 연동</h2>
+
+</body>
+</html>

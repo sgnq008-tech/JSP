@@ -1,0 +1,7 @@
+package com.memberone;
+
+public class studentVO {
+	private String id;
+	private String pass;
+	private String phone1;
+}
