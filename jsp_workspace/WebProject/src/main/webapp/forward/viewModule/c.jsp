@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>C 페이지</title>
+<title>C페이지</title>
 </head>
 <body>
-이 페이지는 <b><font size="5">C</font></b>입니다.
+이 페이지는 <b><font size="5">A</font></b>입니다.
 </body>
 </html>

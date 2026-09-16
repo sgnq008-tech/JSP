@@ -8,15 +8,13 @@
 </head>
 <body>
 <%
-     HttpServletRequest httpRequest = (HttpServletRequest)pageContext.getRequest();
-//                                                                 형변환
+	HttpServletRequest httpRequest = 
+	(HttpServletRequest)pageContext.getRequest();
 %>
 request 기본 객체와 pageContext.getRequest()의 동일 여부:
-<%=request == httpRequest %>
+<%= request == httpRequest %>
 <br>
-
-pageContext.getOut() 메소드를 사용한 데이터 출력 :
-<% pageContext.getOut().println("호헹!!"); %>
-
+pageContext.getOut() 메소드를 사용한 데이터 출력 : 
+<% pageContext.getOut().println("Hello"); %>
 </body>
 </html>

@@ -7,32 +7,32 @@
 <title>좋아하는 운동 및 성별</title>
 </head>
 <body>
-<h1>좋아하는 운동 및 성별</h1>
-<form action="Sport" method="post"> 
-                <fieldset>
-                                <legend>좋아하는 운동 및 성별</legend>
-                                <ul>
-                                <li>
-                                       <label>야구</label>
-                                       <input type ="checkbox" name="sports" value ="야구"> 
-                                       <label>농구</label>
-                                       <input type ="checkbox" name="sports" value ="농구">  
-                                       <label>축구</label>
-                                       <input type ="checkbox" name="sports" value ="축구">                                
-                                </li>
-                                <li>
-                                      <label>남자</label>
-                                      <input type ="radio" name="gender" value ="남자" checked="checked"> 
-                                      <label>여자</label>
-                                      <input type ="radio" name="gender" value ="여자">                                                                              
-                                </li>
-                                <li>
-                                      <input type ="submit" value ="전송">                                        
-                                </li>
-                                </ul>                
-                </fieldset>
+<h1>좋아하는 운동및 성별</h1>
+<form action="Sport" method = "post">
+			<fieldset>
+						<legend>좋아하는 운동 및 성별</legend>
+						<ul>
+							<li>
+									<label>야구</label>
+									<input type="checkbox" name ="sports" value ="야구">
+									<label>농구</label>
+									<input type="checkbox" name ="sports" value ="야구">
+									<label>축구</label>
+									<input type="checkbox" name ="sports" value ="야구">
+							</li>
+							<li>
+									<label>남</label>
+									<input type ="radio" name= "gender" value="남자" checked="checked">
+									<label>여</label>
+									<input type ="radio" name= "gender" value="여자">									
+							</li>
+							<li>
+									<input type = "submit" value="전송">							
+							</li>
+						</ul>
+			</fieldset>
+
 
 </form>
-
 </body>
 </html>

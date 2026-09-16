@@ -1,7 +1,7 @@
-<%@page import="oracle.security.o5logon.a"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,22 +9,27 @@
 <title>초기화 파라미터 읽기</title>
 </head>
 <body>
-초기화 파라미터 목록 :
+
+초기화 파라미터 목록:
+
 <ul>
-     <%
-       Enumeration enumData = application.getInitParameterNames();
-//                                                                (안에있는 내용을 불러옴)
-         while(enumData.hasMoreElements()){
-        	   String initParamName = (String)enumData.nextElement();
- 
-     %>
-<li>
-             <%=initParamName %> : <%=application.getInitParameter(initParamName) %>
-</li>   
 <%
-} 
+    Enumeration enumData = application.getInitParameterNames();
+
+    while(enumData.hasMoreElements()){
+        
+        String initParamName = 
+                (String)enumData.nextElement();
 %>
 
+    <li>
+        <%= initParamName %> :
+        <%= application.getInitParameter(initParamName) %>
+    </li>
+
+<%
+    }
+%>
 </ul>
 
 </body>

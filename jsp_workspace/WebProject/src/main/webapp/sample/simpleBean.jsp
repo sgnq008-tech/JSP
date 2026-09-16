@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-         request.setCharacterEncoding("utf-8");
-%>
-<jsp:useBean id="msg" class="com.sample.simpledata" />
-<jsp:setProperty name="msg" property="message" />
-
+    <%
+    	request.setCharacterEncoding("utf-8");
+    %>
+ <jsp:useBean id = "msg" class = "com.sample.SimpleData"></jsp:useBean>
+<jsp:setProperty name="msg" property="message"/>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +15,8 @@
 <body>
 <h1>빈즈 프로그램</h1>
 <hr color="red"><br>
-<font size="5">
-메시지 : <jsp:getProperty property="message" name="msg"/>
+<font size= "5">
+메시지 : <jsp:getProperty name= "msg" property ="message"/>
 </font>
 </body>
 </html>

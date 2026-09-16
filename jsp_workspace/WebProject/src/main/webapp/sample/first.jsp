@@ -1,46 +1,48 @@
-<%@page import="javax.print.DocFlavor.STRING"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
     pageEncoding="UTF-8"%>
-    
- <%-- JSP의 주석 --%>
- <!-- HTML의 주석 -->
- 
+
+<%-- JSP 주석 --%>
+<!-- HTML 주석 -->
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>JSP Script</title>
+<title>jsp Script</title>
 </head>
+
 <body>
 
-<%!
-        // 변수선언
-        String declation="선언문입니다.";
+    <h2>JSP 스크립트</h2>
+
+    <%!
+        // 선언문
+        String declation = "선언문입니다.";
 
         // 메소드 선언
-        public String declationMethod() {
-        	return declation;
+        String declationMethod() {
+            return "선언문에서 만든 메소드입니다.";
         }
-%>
-<%
-/*
-자바주석
-*/
-  String name = "홍길동";
+    %>
 
-  String script="스크립트입니다.";
-  
-  String comment="주석문입니다.";
-  
-  out.println("내장 객체 이용한 출력 :"+declation+"<br><br>");
+    <%
+        /*
+         * 자바 주석
+         */
 
- 
- %>
- <%=name %><br>
- <%-- JSP 자체 출력 --%>
- 변수 출력 :<%=declation %><br><br>
- 메소드 출력 :<%=declationMethod() %><br><br>
- 
- <%--(=는 들어가면 출력문이됨)--%>
+        String name = "홍길동";
+        String scriptlet = "스크립트릿입니다.";
+        String comment = "주석문 입니다.";
+
+        out.println("내장 객체 이용한 출력: " + declation + "<br><br>");
+    %>
+
+    <%= name %><br>
+
+    변수 출력: <%= declation %><br><br>
+
+    메소드 출력: <%= declationMethod() %><br><br>
+
 </body>
 </html>
+

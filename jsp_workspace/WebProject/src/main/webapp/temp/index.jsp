@@ -8,8 +8,8 @@
 </head>
 <body>
 <% request.setAttribute("PAGETITLE", "정보보기"); %>
-<jsp:forward page="/temp/template/template.jsp">
-          <jsp:param value="info_view.jsp" name="CONTENTPAGE"/>
+<jsp:forward page = "/temp/template/template.jsp">
+	<jsp:param value = "info_view.jsp" name="CONTENTPAGE"/>
 </jsp:forward>
 </body>
 </html>

@@ -12,6 +12,7 @@ import oracle.net.aso.h;
 import java.io.PrintWriter;
 
 
+
 @WebServlet("/VisitList")
 public class VisitList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +24,7 @@ public class VisitList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request,response);
 	}
+
 
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -103,14 +105,14 @@ public class VisitList extends HttpServlet {
 	}
 }
 		
-       
+
 		out.println("<p align='center'>"
 				+ "<a href='/bbs/write/html'>글쓰기</a> </p>");
-        out.println("</body></html>");
+		out.println("</body></html>");
 		}finally {
 			out.close();
 		}
-        
+
 	}
 
 }

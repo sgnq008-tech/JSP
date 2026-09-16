@@ -1,38 +1,38 @@
-jdbc 연결
-
-액션 태그
-
-api 연결
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*"%>
+
 <%
-    // 1. 드라이버 로딩
-    Class.forName("oracle.jdbc.driver.OracleDriver");
+Class.forName("oracle.jdbc.driver.OracleDriver");
 
-    Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
+Connection con = null;
+Statement stmt = null;
+ResultSet rs = null;
 
-    String id = "",
-           passwd = "",
-           name = "",
-           mem_num1 = "",
-           mem_num2 = "",
-           e_mail = "",
-           phone = "",
-           zipcode = "",
-           address = "",
-           job = "";
+String id = "",
+       passwd = "",
+       name = "",
+       mem_num1 = "",
+       mem_num2 = "",
+       e_mail = "",
+       phone = "",
+       zipcode = "",
+       address = "",
+       job = "";
 
-    int counter = 0;
+int counter = 0;
 
-    try {
-        // 2. DB 연결 및 쿼리 실행
-        con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "scott", "tiger");
-        stmt = con.createStatement();
-        String sql = "SELECT * FROM TEMPMEMBER ORDER BY ID ASC";
-        rs = stmt.executeQuery(sql);
+try {
+    con = DriverManager.getConnection(
+        "jdbc:oracle:thin:@localhost:1521:orcl",
+        "scott",
+        "tiger"
+    );
+
+    stmt = con.createStatement();
+
+    String sql = "select * from tempmember";
+
+    rs = stmt.executeQuery(sql);
 %>
 
 <!DOCTYPE html>
@@ -42,82 +42,103 @@ api 연결
 <title>JSP에서 데이터베이스 연동</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
-<body bgcolor="#ffffcc">
-<h2>JSP 스크립트에서 데이터베이스 연동</h2><br>
+
+<body bgcolor="#FFFFCC">
+
+<h2>JSP 스크립트에서 데이터베이스 연동</h2>
+<br>
+
 <h3>회원정보</h3>
 
-<table bordercolor="#0000ff" border="1">
-    <!-- 헤더 행 (총 9칸) -->
-    <tr>
-        <td><strong>ID</strong></td>
-        <td><strong>PASSWD</strong></td>
-        <td><strong>NAME</strong></td>
-        <td><strong>MEM_NUM1</strong></td>
-        <td><strong>MEM_NUM2</strong></td>
-        <td><strong>E_MAIL</strong></td>
-        <td><strong>PHONE</strong></td>
-        <td><strong>ZIPCODE/ADDRESS</strong></td>
-        <td><strong>JOB</strong></td>
-    </tr>
+<table bordercolor="#0000FF" border="1">
 
-<% 
-    if (rs != null) {
-        // 3. 행(Row)을 하나씩 읽으면서 데이터 추출
-        while (rs.next()) {
-            counter++; // 총 건수 증가
+<tr>
+    <td><strong>ID</strong></td>
+    <td><strong>PASSWD</strong></td>
+    <td><strong>NAME</strong></td>
+    <td><strong>MEM_NUM1</strong></td>
+    <td><strong>MEM_NUM2</strong></td>
+    <td><strong>E_MAIL</strong></td>
+    <td><strong>PHONE</strong></td>
+    <td><strong>ZIPCODE/ADDRESS</strong></td>
+    <td><strong>JOB</strong></td>
+</tr>
 
-            id = rs.getString("id");
-            passwd = rs.getString("passwd");
-            name = rs.getString("name");
-            mem_num1 = rs.getString("mem_num1");
-            mem_num2 = rs.getString("mem_num2");
-            e_mail = rs.getString("e_mail");
-            phone = rs.getString("phone");
-            zipcode = rs.getString("zipcode");
-            address = rs.getString("address");
-            job = rs.getString("job");
+<%
+if(rs != null) {
+    while(rs.next()) {
+
+        id = rs.getString("id");
+        passwd = rs.getString("passwd");
+        name = rs.getString("name");
+        mem_num1 = rs.getString("mem_num1");
+        mem_num2 = rs.getString("mem_num2");
+        e_mail = rs.getString("e_mail");
+        phone = rs.getString("phone");
+        zipcode = rs.getString("zipcode");
+        address = rs.getString("address");
+        job = rs.getString("job");
+
+        counter++;
 %>
-    <!-- 한 사람(행)의 데이터 출력 (헤더와 똑같이 9칸) -->
-    <tr>
-        <td><%= id %></td>
-        <td><%= passwd %></td>
-        <td><%= name %></td>
-        <td><%= mem_num1 %></td>
-        <td><%= mem_num2 %></td>
-        <td><%= e_mail %></td>
-        <td><%= phone %></td>
-        <!-- 우편번호와 주소를 묶어서 한 칸에 출력 -->
-        <td><%= (zipcode != null ? zipcode : "") + " " + (address != null ? address : "") %></td>
-        <td><%= job %></td>
-    </tr>
-<% 
-        } // end while
-    } // end if
+
+<tr>
+    <td><%=id %></td>
+    <td><%=passwd %></td>
+    <td><%=name %></td>
+    <td><%=mem_num1 %></td>
+    <td><%=mem_num2 %></td>
+    <td><%=e_mail %></td>
+    <td><%=phone %></td>
+    <td><%=zipcode %> / <%=address %></td>
+    <td><%=job %></td>
+</tr>
+
+<%
+    }
+}
 %>
+
 </table>
 
 <br>
-total records : <%= counter %>
+
+total records : <%=counter %>
 
 <%
-    } catch (SQLException ss) {
-        ss.printStackTrace();
-    } catch (Exception ee) {
-        ee.printStackTrace();
-    } finally {
-        // 4. 역순으로 자원 정리 (rs -> stmt -> con)
-        if (rs != null) {
-            try { rs.close(); } catch (SQLException s) { s.printStackTrace(); }
-        }
-        if (stmt != null) {
-            try { stmt.close(); } catch (SQLException s) { s.printStackTrace(); }
-        }
-        if (con != null) {
-            try { con.close(); } catch (SQLException s) { s.printStackTrace(); }
+} catch(SQLException ss) {
+    ss.printStackTrace();
+
+} catch(Exception ee) {
+    ee.printStackTrace();
+
+} finally {
+
+    if(rs != null) {
+        try {
+            rs.close();
+        } catch(SQLException s) {
+            s.printStackTrace();
         }
     }
+
+    if(stmt != null) {
+        try {
+            stmt.close();
+        } catch(SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    if(con != null) {
+        try {
+            con.close();
+        } catch(SQLException s) {
+            s.printStackTrace();
+        }
+    }
+}
 %>
 
 </body>
 </html>
-

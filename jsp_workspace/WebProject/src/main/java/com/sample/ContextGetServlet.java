@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
 @WebServlet("/ContextGet")
 public class ContextGetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,12 +22,12 @@ public class ContextGetServlet extends HttpServlet {
 		int age = (Integer)getServletContext().getAttribute("age");
 		
 		response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
-        
-        out.println("<html><body>");
-        out.println("이름 :"+name+"<br>");
-        out.println("나이 :"+age+"<br>");
-        out.println("</body></html>");
+		PrintWriter out = response.getWriter();
+
+		out.println("<html><body>");
+		out.println("이름 :"+name+"<br>");
+		out.println("나이 :"+age+"<br>");
+		out.println("</body></html>");
 	}
 
 }

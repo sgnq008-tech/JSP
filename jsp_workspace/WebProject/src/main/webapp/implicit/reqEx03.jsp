@@ -1,7 +1,8 @@
-<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
+
+<%@ page import="java.util.Enumeration" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,22 +10,21 @@
 <title>헤더 목록</title>
 </head>
 <body>
-<%
-  Enumeration enumData = request.getHeaderNames();
-             while(enumData.hasMoreElements()){
-//                            Enumeration 목록이 있는지 없는지 판단하는    
-
-                     String headerName = (String)enumData.nextElement();
-                     String headerValue = request.getHeader(headerName);
-             
-
-// 이 부분 사이트에 출력되지 않음 
-%>
-
-<%=headerName %> : <%=headerValue %><br>
 
 <%
-         }
+    Enumeration enumData = request.getHeaderNames();
+
+    while(enumData.hasMoreElements()) { 
+        
+        String headerName = (String)enumData.nextElement();
+        String headerValue = request.getHeader(headerName);
 %>
+
+        <%= headerName %> : <%= headerValue %><br>
+
+<%
+    }
+%>
+
 </body>
 </html>

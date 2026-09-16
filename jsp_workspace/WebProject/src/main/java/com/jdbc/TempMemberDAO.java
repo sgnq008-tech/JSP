@@ -1,10 +1,8 @@
 package com.jdbc;
-
 import java.util.Vector;
 import java.sql.*;
 import javax.sql.*;
 import javax.naming.*;
-
 public class TempMemberDAO {
 /*	private final String JDBC_DRIVER=
 	"oracle.jdbc.driver.OracleDriver";
@@ -17,7 +15,8 @@ public class TempMemberDAO {
 	public TempMemberDAO() {
 		try {
 			Context init = new InitialContext();
-		ds = (DataSource)init.lookup("java:comp/env/jdbc/myOracle");
+	    	 
+	    	ds = (DataSource)init.lookup("java:comp/env/jdbc/myOracle");
 			//Class.forName(JDBC_DRIVER);
 		}catch(Exception e) {
 			System.out.println("Error:JDBC 드라이버 로딩 실패!!!");
@@ -49,8 +48,12 @@ public class TempMemberDAO {
 				vo.setAddress(rs.getString("address"));
 				vo.setJob(rs.getString("job"));
 				vecList.add(vo);
-				}
-					
+				
+				
+			}
+			
+			
+			
 		}catch(Exception ex) {
 			System.out.println("Exception"+ex);
 		}finally {

@@ -13,33 +13,33 @@ import javax.servlet.http.HttpServletResponse;
 public class Destination extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);	
+		processRequest(request, response);
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		processRequest(request, response);
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		try {
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<titel>Destination</title>");
-		out.println("</head>");		
-		out.println("<body>");
-		
-		out.println("<h1>Destination Servlet입니다.</h1>");
-		out.println("</body>");
-		out.println("</html>");
-		}finally{
-		out.close();
-		}; //예외처리를 위해 try문으로 끝내기위해 finally로 마무리
-
-}
+	response.setContentType("text/html;charset=utf-8");
+	PrintWriter out = response.getWriter();
+	try {
+	out.println("<html>");
+	out.println("<head>");
+	out.println("<title>Destination</title>");
+	out.println("</head>");
+	out.println("</body>");
 	
+	out.println("<h1>Destination Servlet 입니다.</h1>");
+	out.println("</body>");
+	out.println("</html>");
+	}finally {
+		out.close();
+	}
+	}
 }

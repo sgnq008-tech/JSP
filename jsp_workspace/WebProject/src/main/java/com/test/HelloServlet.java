@@ -8,30 +8,29 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-//@WebServlet("/Hello")// 자동 설정 -> 어노테이션()
-// 웹페이지로 접속하면 주소창 오른쪽 끝에있다
+/**
+ * Servlet implementation class HelloServlet
+ */
+//@WebServlet("/Hello")자동설정 ->어노테이션()
 public class HelloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  response.setContentType("text/html;charset=utf-8");
-//                                                                     문자인코딩(한,영 호환)
-	  PrintWriter out = response.getWriter();
-	  Date date = new Date();
-	  out.println("<html>"); 
-	  out.println("<body>"); 
-	  out.println("HelloSeverlet 요청 !!!");
-	  out.println("<br>");
-	  out.println(date.toString());
-	  out.println("</body>"); 
-	  out.println("</html>"); 
+		
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		Date date = new Date();
+		out.println("<html>");
+		out.println("<body>");
+		out.println("HelloServlet 요청 !!!!");
+		out.println("<br>");
+		out.println(date.toString());
+		out.println("</body>");
+		out.println("</html>");
+		
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	System.out.println();
+		doGet(request, response);
 	}
-
 }

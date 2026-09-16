@@ -1,13 +1,12 @@
 package com.bbs;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import javax.servlet.Servlet.*;
+import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
-import java.sql.*;
+
+
 
 
 @WebServlet("/VisitInsert")
@@ -33,9 +32,9 @@ public class visitinvert extends HttpServlet {
 		String memo = request.getParameter("writer");
 		
 		System.out.println("작성자 : "+writer);
-		System.out.println("내  용 : "+writer);
+		System.out.println("내  용 : "+writer);
 		
-		//데이터베이스에 저장 Query 
+		//데이터베이스에 저장 Query
 		String sql = "insert into visit(no,writer,memo,regdate) "
 				+ "values(visit_seq.nextval, ?, ?, sysdate)";
 		
@@ -78,8 +77,11 @@ public class visitinvert extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	response.sendRedirect("/VisitList");	
+	response.sendRedirect("/VisitList");
 
+		
+		
+		
 	}
 
 }

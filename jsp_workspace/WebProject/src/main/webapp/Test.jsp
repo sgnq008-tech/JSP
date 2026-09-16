@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-안녕하세요 집 주인입니다
+안녕하세요 저의 홈에 오신것을 환영
 </body>
 </html>

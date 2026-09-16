@@ -10,24 +10,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-//@WebServlet({ "/sportServlet", "/test/Sport" })
+//@WebServlet("/test/Sport")
 public class SportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+ 
+   
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request,response);
+		processRequest(request, response);
+		
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request,response);
+		processRequest(request, response);
 	}
-
+	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//post 방식에서의 한글처리
+		//post방식에서의 한글처리
 		request.setCharacterEncoding("utf-8");
-		
-		//form에 name속성의 값을 얻어옴
+		// 폼에 name 속성에 값을 얻어옴 
 		String[] sports = request.getParameterValues("sports");
 		String gender = request.getParameter("gender");
 		
@@ -36,11 +38,14 @@ public class SportServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		out.println("<html><body>");
+		out.print("<html><body>");
 		for(String sport : sports) {
-			out.println("좋아하는 운동 : " +sport+ "<br>");
+			out.println("좋아하는 운동 :"+sport +"<br>");
 		}
-		out.println("성별 :" +gender+ "<br>");
+		out.println("성별:"+gender+"<br>");
 		out.println("</body></html>");
+		
+		
 	}
+
 }

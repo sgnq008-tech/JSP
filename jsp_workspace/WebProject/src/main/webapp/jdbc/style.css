@@ -39,8 +39,8 @@ textarea {
 	border-top: 1px solid #999999;
 	border-left: 1px solid #999999;
 	border-bottom: 1px solid #999999;
-	font-family: sans-serif;
-	background-color: white;
+	font-family : sans-serif;
+	background-color:white;
 }
 
 input {
@@ -48,11 +48,10 @@ input {
 	border-top: 1px solid #999999;
 	border-left: 1px solid #999999;
 	border-bottom: 1px solid #999999;
-	font-family: sans-serif;
-	background-color: white;
+	font-family : sans-serif;
+	background-color:white;
 }
-
-a:link{ text-decoration: none; color: #696969;}
-a:hover{ text-decoration: yes; color: #66CCFF;}
-a:visited{ text-decoration: none; color: #330066;}
+a:link {text-decoration: none;color: #696969;}
+a:hover {text-decoration: yes;color: #66ccff;}
+a:visited {text-decoration: none;color: #330066;}
 

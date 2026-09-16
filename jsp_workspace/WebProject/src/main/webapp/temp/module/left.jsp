@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Insert title here</title>
 </head>
 <body>
 좌측메뉴 :
-
 </body>
 </html>

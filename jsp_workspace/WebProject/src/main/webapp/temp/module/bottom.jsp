@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Insert title here</title>
 </head>
 <body>
 하단 메뉴 : 소개 | 도움말 | 약관 | 사이트맵

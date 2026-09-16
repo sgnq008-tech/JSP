@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Insert title here</title>
 </head>
 <body>
-상단 메뉴 :
-<a href="#">HOME</a>
-<a href="#">INFO</a>
+상단메뉴:
+<a href = "#"> HOME</a>
+<a href = "#"> INFO</a>
 </body>
 </html>
