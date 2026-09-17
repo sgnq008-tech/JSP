@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-
-
-
-
+<%
+	String loginID = (String)session.getAttribute("loginID");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,31 @@
 <link href = "style.css" rel = "stylesheet" type= "text/css">
 </head>
 <body>
-<form action = "#"method="post">
+
+<% if(loginID != null){ //로그인이 성공했을 때 %>
+<table border="1" width= "300">
+<tr>
+	<td colspan="3" align ="center"><%=loginID %>님 환영합니다</td>
+	
+</tr>
+<tr>
+	<td align ="center" width = "100">
+	<a href = "modifyForm.jsp"> 정보수정</a>
+	</td>
+	<td align = "center" width = "100">
+		<a href="deleteForm.jsp">회원탈퇴</a>
+	</td>
+	<td align="center" width ="100">
+		<a href="logout.jsp">로그아웃</a>
+	</td>
+</tr>
+</table>
+<%} else {%>
+
+
+
+
+<form action = "loginProc.jsp" method="post">
 <table border="1" width= "300">
 	<tr>
 		<td colspan="2" align="center">회원 로그인</td>
@@ -39,7 +62,7 @@
 			onclick= "javascript:window.location='regForm.jsp'">
 	</tr>
 </table>
-
+<% } %>
 </form>
 </body>
 </html>

@@ -49,6 +49,8 @@ bunji		 varchar2(80),
 constraint ZIPCODE_PK primary key(seq)
 );
 
+show user;
 
+select * from board;
 
 

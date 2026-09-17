@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" http-equiv="refresh" content="3;url='login.jsp'">
 <title>회원가입 확인</title>
 <link href = "style.css" rel = "stylesheet" type= "text/css">
 </head>
@@ -22,7 +22,7 @@
 <%
 	if(flag){
 		out.println("<b>회원 가입을 진심으로 축하드립니다.</b>");
-		out.println("<a href=login.jsp>로그인</a>");
+		//out.println("<a href=login.jsp>로그인</a>");
 	}else{
 		out.println("<b>다시 입력해 주세요.</b><b>");
 		out.println("<a href=regForm.jsp>다시가입</a>");
