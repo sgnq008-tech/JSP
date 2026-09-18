@@ -44,26 +44,27 @@ try {
 
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>">이름</td>
-					<td width="330"><input type="text" size="12" maxlength="12"
-						name="writer"></td>
+					<td width="330">
+					<input type="text" size="12" maxlength="12" name="writer"></td>
 				</tr>
 
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>">이메일</td>
-					<td width="330"><input type="text" size="40" maxlength="40"
-						name="email"></td>
+					<td width="330">
+					<input type="text" size="40" maxlength="40" name="email">
+					</td>
 				</tr>
 
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>">제목</td>
 					<td width="330">
-						<%
-						if (request.getParameter("num") == null) {// 새글일떄
-						%> <input
-						type="text" size="50" maxlength="50" name="subject"> <%
- } else {// 답변글일떄
- %>
-						<input type="text" size="50" maxlength="50" name="subject"
+						
+						<%if (request.getParameter("num") == null) {// 새글일떄%> 
+						
+					<input type="text" size="50" maxlength="50" name="subject">
+						<% } else {// 답변글일떄%> 
+					
+					<input type="text" size="50" maxlength="50" name="subject"
 						value="[답변글]"> <%
  }
  %>
@@ -78,18 +79,20 @@ try {
 
 				<tr>
 					<td width="70" bgcolor="<%=value_c%>">비밀번호</td>
-					<td width="330"><input type="text" size="10" maxlength="10"
-						name="pass"></td>
+					<td width="330">
+					<input type="password" size="10"
+						maxlength="10" name="pass"></td>
 				</tr>
 
 				<tr>
 					<td colspan="2" bgcolor="<%=value_c%>" align="center"><input
-						type="submit" value="글쓰기"> <input type="reset"
-						value="다시작성"> <input type="button" value="목록"
+						type="submit" value="글쓰기"> 
+						
+						<input type="reset"
+						value="다시작성"> 
+						<input type="button" value="목록"
 						onclick="window.location='list.jsp'"></td>
 				</tr>
-
-
 			</table>
 		</form>
 		<%

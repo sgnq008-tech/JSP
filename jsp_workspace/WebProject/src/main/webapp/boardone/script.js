@@ -30,5 +30,14 @@ function writeSave() {
         return false;
     }   
     
-    return true; // 모든 항목이 입력되었을 때 정상 제출
+}
+
+function deleteSave(){
+	  
+        if(document.delForm.pass.value == "") {
+        alert("비밀번호를 입력해 주세요.");
+        document.delForm.pass.focus();
+        return false;
+    }  
+  	
 }

@@ -2,7 +2,7 @@ package com.boardone;
 
 import java.sql.*;
 import java.util.*;
-
+import javax.swing.text.AbstractDocument.Content;
 import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
 
 public class BoardDAO {
@@ -54,10 +54,9 @@ public class BoardDAO {
 			else
 				number = 1;
 
-			if (num != 0) { // 수정: number → num
+			if (num != 0) { // 답변글일때
 
-				// 답변글일때
-				sql = "update board set step=step+1 where ref=? and step > ?"; // 수정: amd → and
+				sql = "update board set step=step + 1 where ref=? and step > ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, ref);
 				pstmt.setInt(2, step);
@@ -151,9 +150,11 @@ public class BoardDAO {
 				}
 		}
 		return x;
+		
 	}// end getArticleCount
 
-	public List<BoardVO> getArticles() {
+	public List<BoardVO> getArticles(int start, int end) {
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -162,11 +163,23 @@ public class BoardDAO {
 		try {
 
 			con = ConnUtil.getConnection();
-			String sql = "select * from board order by num desc";
+			
+			//String sql = "select * from board order by num desc";
+			
+			String sql = "select * from (select rownum rnum, num,"
+					+ " writer, email,subject, pass, regdate, readcount, "
+					+ "ref, step, depth, content, ip from"
+					+ "(select * from board order by ref desc, step asc)) "
+					+ "where rnum >=? and rnum <=?";
+			
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
 			rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
-				articleList = new ArrayList<BoardVO>();
+				articleList = new ArrayList<BoardVO>(end-start+1);
 
 				do {
 					BoardVO article = new BoardVO();
@@ -258,6 +271,283 @@ public class BoardDAO {
             if (con != null) try { con.close(); } catch (SQLException e) {}
         }
        return article;
+	}//end getArticle
+	
+	/* 글 수정 버튼을 클릭했을 경우 updateForm.jsp로 이동하여 글 수정하면을 출력한다.
+	 * 
+	 * 글 수정시에는 글 목록보기와 다르게 조회수를 증가 시킬 필요가 없다.
+	 * 
+	 * 조회수를 증가시키는 부분을 제외하고 num에 해당하는 게시글만 가져오는 메소드 구현
+	 */
+	public BoardVO updateGetArticle(int num) {
+		
+		Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        BoardVO article = null;
+        
+
+        try { 
+           con = ConnUtil.getConnection();
+           
+           String sql="select * from board where num=?";
+           pstmt = con.prepareStatement(sql);
+           pstmt.setInt(1, num);
+           rs = pstmt.executeQuery();
+           if(rs.next()) {
+        	   article = new BoardVO();
+       		    article.setNum(rs.getInt("num"));
+				article.setWriter(rs.getString("writer"));
+				article.setEmail(rs.getString("email"));
+				article.setSubject(rs.getString("subject"));
+				article.setPass(rs.getString("pass"));
+				article.setRegdate(rs.getTimestamp("regdate"));
+				article.setReadcount(rs.getInt("readcount"));
+				article.setRef(rs.getInt("ref"));
+				article.setStep(rs.getInt("step"));
+				article.setDepth(rs.getInt("depth"));
+				article.setContent(rs.getString("content"));
+				article.setIp(rs.getString("ip"));
+        	   
+           }
+            
+        } catch (SQLException ss) {
+            ss.printStackTrace();
+        } finally {
+            if (rs != null) try { rs.close(); } catch (SQLException e) {}
+            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) {}
+            if (con != null) try { con.close(); } catch (SQLException e) {}
+        }
+        return article;
+	}// end updategetArticle
+  
+	
+	/* 글 수정 처리
+	 * 
+	 *  updateForm.jsp에서 비밀번호를 입력하고 글 수정 법튼을 클릭한다.
+	 *  그러면 데이터베이스에서 글이 수정처리를 하도록 메소드를 구현한다.
+	 */
+	
+	public int updateArticle(BoardVO article) {
+		
+		Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String dbpasswd="";
+        String sql="";
+        int result = -1;
+       
+
+        try { 
+        	 con = ConnUtil.getConnection();
+        	 sql = "select pass from board where num=?";
+        	 pstmt = con.prepareStatement(sql);
+             pstmt.setInt(1, article.getNum());
+             rs = pstmt.executeQuery();
+             
+             if(rs.next()) {
+            	 dbpasswd = rs.getString("pass");
+            	 if(dbpasswd.equals(article.getPass())) {
+            		 sql = "update board set writer=?, email=?, "
+            		 		+ "subject=?, content=? where num=?";
+            		 pstmt = con.prepareStatement(sql);
+            		 pstmt.setString(1, article.getWriter());
+            		 pstmt.setString(2, article.getEmail());
+            		 pstmt.setString(3, article.getSubject());
+            		 pstmt.setString(4, article.getContent());
+            		 pstmt.setInt(5, article.getNum());
+            		 
+            		 pstmt.executeUpdate();
+            		 result = 1;
+            	 }else {
+            		 result = 0;
+            	 }
+             }
+        	
+            
+        } catch (SQLException ss) {
+            ss.printStackTrace();
+        } finally {
+            if (rs != null) try { rs.close(); } catch (SQLException e) {}
+            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) {}
+            if (con != null) try { con.close(); } catch (SQLException e) {}
+        }
+        return result;
+	}// end updateArticle
+	
+	/* 글 내용 보기화면에서 글 삭제 버튼을 클릭하면 삭제 처리를 하도록 한다.
+	 * 글 삭제처리시 비밀번호를 입력받아 데이터베이스의 비밀번호와 일치하면
+	 * 글삭제를 처리하고, 그렇지 않으면 비밀번호가 틀렸다고 알려준다.
+	 * 
+	 * 글 삭제를 처리하는 메소드를 구현함
+	 */
+	public int deletArticle(int num, String pass) {
+		
+		Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String dbpasswd="";
+        String sql="";
+        int result = -1;
+       
+
+        try {
+        	con = ConnUtil.getConnection();
+       	    sql = "select pass from board where num=?";
+       	    pstmt = con.prepareStatement(sql);
+       	    pstmt.setInt(1,num);
+       	    rs = pstmt.executeQuery();
+         
+         if(rs.next()) {
+        	 dbpasswd = rs.getString("pass");
+        	 if(dbpasswd.equals(pass)) {
+        		 sql = "delete from board where num=?";
+        		 pstmt = con.prepareStatement(sql);
+        	     pstmt.setInt(1,num);
+        	     pstmt.executeUpdate();
+        		 result = 1;
+        	 }else {
+        		 result = 0;
+        	 }
+         }
+        	
+            
+        } catch (SQLException ss) {
+            ss.printStackTrace();
+        } finally {
+            if (rs != null) try { rs.close(); } catch (SQLException e) {}
+            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) {}
+            if (con != null) try { con.close(); } catch (SQLException e) {}
+        }
+        return result;
+	}// end deleteArticle
+	
+	//--------------검색 기능 구현
+	// 검색한 내용이 몇개인지를 반환하는 메소드 구현(What: 검색조건, content: 검색내용
+public int getArticleCount(String what, String content) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int x = 0;
+
+		try {
+			con = ConnUtil.getConnection();
+			// 수정: where / 컬럼명 / like 사이에 공백이 없어서
+			// "wherewriter like..." 처럼 붙어버려 SQL 문법 오류가 나던 부분
+			String sql = "select count(*) from board where " 
+					+ what + " like '%" + content + "%'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+
+		} catch (SQLException ss) {
+			ss.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException e) {
+				}
+		}
+		return x;
+		
+	}// end getArticleCount
+
+/* 검색한 내용을 리스트로 받아옴(what, content, start, end) 시작번호와 끝번호는 페이징 처리용
+ * 
+ */
+
+public List<BoardVO> getArticles(String what, String content, int start, int end) {
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	List<BoardVO> articleList = null;
+
+	try {
+
+		con = ConnUtil.getConnection();
+		
+		//String sql = "select * from board order by num desc";
+		
+		/*
+		 * String sql = "select * from (select rownum rnum, num," +
+		 * " writer, email,subject, pass, regdate, readcount, " +
+		 * "ref, step, depth, content, ip from" +
+		 * "(select * from board order by ref desc, step asc)) " +
+		 * "where rnum >=? and rnum <=?";
+		 */
+		
+		// 수정: "where "+what+" like '%"+content+"%' order by..." 처럼
+		// 단어 사이 공백을 넣어야 함 (기존엔 wherewriterlike'%...%'order by 로 다 붙어있었음)
+		String sql = "select * from (select rownum rnum, num,"
+				+ " writer, email,subject, pass, regdate, readcount, "
+				+ "ref, step, depth, content, ip from"
+				+ "(select * from board where " + what + " like '%" + content + "%' order by ref desc, step asc)) "
+				+ "where rnum >=? and rnum <=?";
+		
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, start);
+		pstmt.setInt(2, end);
+		
+		rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
+			articleList = new ArrayList<BoardVO>(5);
+
+			do {
+				BoardVO article = new BoardVO();
+				article.setNum(rs.getInt("num"));
+				article.setWriter(rs.getString("writer"));
+				article.setEmail(rs.getString("email"));
+				article.setSubject(rs.getString("subject"));
+				article.setPass(rs.getString("pass"));
+				article.setRegdate(rs.getTimestamp("regdate"));
+				article.setReadcount(rs.getInt("readcount"));
+				article.setRef(rs.getInt("ref"));
+				article.setStep(rs.getInt("step"));
+				article.setDepth(rs.getInt("depth"));
+				article.setContent(rs.getString("content"));
+				article.setIp(rs.getString("ip"));
+				articleList.add(article);
+
+			} while (rs.next());
+
+		}
+
+	} catch (SQLException ss) {
+		ss.printStackTrace();
+	} finally {
+		if (rs != null)
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
+		if (pstmt != null)
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+			}
+		if (con != null)
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
 	}
-   
+	return articleList;
+}
+	
 }
