@@ -100,7 +100,15 @@
 			<location>/error/errorNullPointer.jsp</location>
 </error-page>
 
+<jsp-cofig>
+     <taglib>
+             <taglib-url>/WEB-INF/tids/el-function.tld</taglib-url>
+             <taglib-location>/WEB-INF/tids/el-function.tld</taglib-location>
+     
+     </taglib>
 
+
+</jsp-cofig>
 
 
 
