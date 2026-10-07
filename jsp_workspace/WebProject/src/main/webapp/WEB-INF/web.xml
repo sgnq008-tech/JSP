@@ -107,6 +107,17 @@
      </taglib>
 </jsp-config>
 
-
+<servlet>
+    <servlet-name>ControllerURI</servlet-name>
+    <servlet-class>mvc.Controller</servlet-class>
+    <init-param>
+     <param-name>propertyConfig</param-name>
+     <param-value>Command.properties</param-value>
+    </init-param>
+</servlet>
+<servlet-mapping>
+<servlet-name>ControllerURI</servlet-name>
+<url-pattern>*.cdo</url-pattern>
+</servlet-mapping>
 
 </web-app>

@@ -1,14 +1,19 @@
 package com.mvc.control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mvc.action.Action;
 
-@WebServlet("/ControlServlet")
+
+@WebServlet("*.do")
 public class ControlServlet extends HttpServlet {
    private static final long serialVersionUID = 1L;
 
@@ -17,10 +22,29 @@ public class ControlServlet extends HttpServlet {
       String cmd = request.getParameter("cmd");
       
       if(cmd != null) {
+    	  ActionFactory factory = ActionFactory.getInstance();
+    	  Action action = factory.getAction(cmd);
+    	  ActionForward af = action.execite(request, response);
+    	  if(af.isRedirect()) {
+    		  response.sendRedirect(af.getUrl());
+    	  }else {
+    		  RequestDispatcher rd = 
+    				  request.getRequestDispatcher(af.getUrl());
+    		  rd.forward(request, response);
+    	  }
          
       }else {
-         
+         response.setContentType("text/html;charset=utf-8");
+         PrintWriter out = response.getWriter();
+         out.println("<html>");
+         out.println("<head><title>Error</title></head>");
+         out.println("<body>");
+         out.println("<h4>올바른 요청이 아닙니다</h4>");
+         out.println("<h4>http://localhot:9090/mve/test.do?cmd=요청키워드</h4>");
+         out.println("</body>");
+         out.println("</html>");
       }
+      
    }
 
 }
