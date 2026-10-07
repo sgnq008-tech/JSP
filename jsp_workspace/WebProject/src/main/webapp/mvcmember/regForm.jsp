@@ -11,7 +11,7 @@
 <body>
 
 </body>
-<form action="regForm.jsp" name="regForm" method="post">
+<form action="member.mdo?cmd=regForm" name="regForm" method="post">
 <table border="1">
 	<tr>
 		<td colspan="2" align="center"> 회원 가입 정보 입력</td>
@@ -92,9 +92,6 @@
 			<input type= "reset" value = "다시입력">
 		</td>
 	</tr>
-	
-	
-	
 
 </table>
 

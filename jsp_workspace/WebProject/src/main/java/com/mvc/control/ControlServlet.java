@@ -40,7 +40,7 @@ public class ControlServlet extends HttpServlet {
          out.println("<head><title>Error</title></head>");
          out.println("<body>");
          out.println("<h4>올바른 요청이 아닙니다</h4>");
-         out.println("<h4>http://localhot:9090/mve/test.do?cmd=요청키워드</h4>");
+         out.println("<h4>http://localhot:9090/mvc/test.do?cmd=요청키워드</h4>");
          out.println("</body>");
          out.println("</html>");
       }
