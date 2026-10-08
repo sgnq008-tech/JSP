@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3 align="center">Index Page 입니다.</h3>
-<a href="member.mdo?cmd=login">로그인</a>
+<a href="member.mdo?cmd=login">로그인</a><br>
 <a href="member.mdo?cmd=regForm">회원가입</a>
 </body>
 </html>

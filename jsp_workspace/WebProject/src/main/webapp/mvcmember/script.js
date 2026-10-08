@@ -8,7 +8,7 @@ function idCheck(id) {
 	}
 }
 
-function zipChect(){
+function zipCheck(){
 	url = "member.mdo?cmd=zipCheck&check=y";
 	window.open(url, "post", "toolbar=no, width=500, height=300, directories=no, status=yes,scrollbars=yes,menubar=no");
 }

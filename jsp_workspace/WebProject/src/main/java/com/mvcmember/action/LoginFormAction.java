@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mvcmember.control.ActionForward;
 
-public class RegFormAction implements Action {
+public class LoginFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		return new ActionForward("/mvcmember/regForm.jsp",false);
+		return new ActionForward("/mvcmember",false);
 	}
 
 }

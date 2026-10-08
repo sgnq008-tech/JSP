@@ -2,8 +2,11 @@ package com.mvcmember.control;
 
 import com.mvcmember.action.RegFormAction;
 import com.mvcmember.action.Action;
+import com.mvcmember.action.IdCheckAction;
 import com.mvcmember.action.IndexAction;
 import com.mvcmember.action.RegProcAction;
+import com.mvcmember.action.ZipCheckAction;
+import com.mvcmember.action.LoginFormAction;
 
 public class ActionFactory {
 
@@ -33,9 +36,13 @@ public class ActionFactory {
             case "regProc": 
             	action = new RegProcAction(); 
             	break;
+            	
+            case "login": 
+            	action = new LoginFormAction(); 
+            	break;
                 
             /*
-             * case "login": action = new LoginFormAction(); break;
+             * 
              * case "loginProc": action = new LoginProcAction(); break;
              * case "logout": action = new LogoutAction(); break;
              * 
@@ -44,9 +51,17 @@ public class ActionFactory {
              * case "modifyProc": action = new ModifyProcAction(); break;
              * case "deleteForm": action = new DeleteFormAction(); break;
              * case "deleteProc": action = new DeleteProcAction(); break;
-             * case "idCheck": action = new IdCheckAction(); break;
-             * case "zipCheck": action = new ZipCheckAction(); break;
+             
              */
+            case "idCheck": 
+            	action = new IdCheckAction(); 
+            	break;
+            	
+			
+            case "zipCheck":
+                action = new ZipCheckAction();
+                break;
+			 
             
             default:
                 action = new IndexAction();
