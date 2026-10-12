@@ -7,6 +7,7 @@ import com.mvcmember.action.IndexAction;
 import com.mvcmember.action.RegProcAction;
 import com.mvcmember.action.ZipCheckAction;
 import com.mvcmember.action.LoginFormAction;
+import com.mvcmember.action.LoginProcAction;
 
 public class ActionFactory {
 
@@ -41,9 +42,13 @@ public class ActionFactory {
             	action = new LoginFormAction(); 
             	break;
                 
+            case "loginProc": 
+            	action = new LoginProcAction(); 
+            	break;
+            	
             /*
              * 
-             * case "loginProc": action = new LoginProcAction(); break;
+             * 
              * case "logout": action = new LogoutAction(); break;
              * 
              * 

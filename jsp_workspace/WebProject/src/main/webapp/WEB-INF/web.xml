@@ -107,7 +107,7 @@
      </taglib>
 </jsp-config>
 
-<servlet>
+<!-- <servlet>
     <servlet-name>ControllerURI</servlet-name>
     <servlet-class>mvc.Controller</servlet-class>
     <init-param>
@@ -118,6 +118,19 @@
 <servlet-mapping>
 <servlet-name>ControllerURI</servlet-name>
 <url-pattern>*.cdo</url-pattern>
+</servlet-mapping> -->
+
+<servlet>
+    <servlet-name>ControllerURI</servlet-name>
+    <servlet-class>com.board.controller.ControllerAction</servlet-class>
+    <init-param>
+     <param-name>propertyConfig</param-name>
+     <param-value>CommandPro.properties</param-value>
+    </init-param>
+</servlet>
+<servlet-mapping>
+<servlet-name>ControllerURI</servlet-name>
+<url-pattern>*.bdo</url-pattern>
 </servlet-mapping>
 
 </web-app>
