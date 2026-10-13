@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 // BoardVO, ConnUtil 은 같은 패키지(com.board.model)에 있어야 합니다.
 public class BoardDAO {
 
@@ -346,5 +347,152 @@ public int deletArticle(int num, String pass) {
         }
         return result;
 	}// end deleteArticle
+
+public int getArticleCount(String find, String find_box) {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	int x = 0;
+
+	try {
+	    con = ConnUtil.getConnection();
+
+	    // 컬럼명은 ? 로 바인딩할 수 없으므로 허용된 값만 직접 사용
+	    String column = "writer";
+	    if ("subject".equals(find)) {
+	        column = "subject";
+	    } else if ("content".equals(find)) {
+	        column = "content";
+	    }
+
+	    String sql = "select count(*) from board where " + column + " like ?";
+	    pstmt = con.prepareStatement(sql);
+	    pstmt.setString(1, "%" + find_box + "%");
+	    rs = pstmt.executeQuery();
+
+	    if (rs.next()) {
+	        x = rs.getInt(1);
+	    }
+
+	} catch (SQLException ss) {
+		ss.printStackTrace();
+	} finally {
+		if (rs != null)
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
+		if (pstmt != null)
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+			}
+		if (con != null)
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+	}
+	return x;
+	
+}// end getArticleCount
+
+/* 검색한 내용을 리스트로 받아옴(what, content, start, end) 시작번호와 끝번호는 페이징 처리용
+* 
+*/
+
+public List<BoardVO> getArticles(String find, String find_box, int start, int end) {
+
+Connection con = null;
+PreparedStatement pstmt = null;
+ResultSet rs = null;
+List<BoardVO> articleList = null;
+
+try {
+
+	con = ConnUtil.getConnection();
+	StringBuffer sql = new StringBuffer();
+	sql.append("select * from");
+	sql.append("select rownum rnum, num,"
+			+ " writer, email,subject, pass, regdate, readcount,"
+			+ "ref, step, depth, content, ip from");
+	if(find.equals("writer")) {
+		sql.append("(select * from board writer=? order by ref desc, step asc))"
+				+ "			+ \"where rnum >=? and rnum <=?");
+		pstmt= con.prepareStatement(sql.toString());
+		pstmt.setString(1, find_box);
+		pstmt.setInt(2, start);
+		pstmt.setInt(3, end);
+	}else if(find.equals("content")) {
+		sql.append("(select * from board content=? order by ref desc, step asc))"
+				+ "			+ \"where rnum >=? and rnum <=?");
+	pstmt.setInt(1, start);
+	pstmt.setInt(2, end);
+	}else if(find.equals("subject")) {
+		sql.append("(select * from board subject=? order by ref desc, step asc))"
+				+ "			+ \"where rnum >=? and rnum <=?");
+	pstmt.setInt(1, start);
+	pstmt.setInt(2, end);
+	}
+	
+	rs = pstmt.executeQuery();
+	
+	if(find.equals("writer")) {
+		pstmt = con.prepareStatement("select count (*) from board where writer=?");
+		pstmt.setString(1, find_box);
+	}else if(find.equals("subject")) {
+		pstmt = con.prepareStatement("select count (*) from board where subject like'%"+find_box+"%'order by");
+	}else if(find.equals("content")) {
+		pstmt = con.prepareStatement("select count (*) from board where content like'%"+find_box+"%'order by");
+	}else {
+		pstmt=con.prepareStatement("select count (*) from board");
+	}
+	
+	rs = pstmt.executeQuery();
+	
+	if (rs.next()) {
+		articleList = new ArrayList<BoardVO>(5);
+
+		do {
+			BoardVO article = new BoardVO();
+			article.setNum(rs.getInt("num"));
+			article.setWriter(rs.getString("writer"));
+			article.setEmail(rs.getString("email"));
+			article.setSubject(rs.getString("subject"));
+			article.setPass(rs.getString("pass"));
+			article.setRegdate(rs.getTimestamp("regdate"));
+			article.setReadcount(rs.getInt("readcount"));
+			article.setRef(rs.getInt("ref"));
+			article.setStep(rs.getInt("step"));
+			article.setDepth(rs.getInt("depth"));
+			article.setContent(rs.getString("content"));
+			article.setIp(rs.getString("ip"));
+			articleList.add(article);
+
+		} while (rs.next());
+
+	}
+
+} catch (SQLException ss) {
+	ss.printStackTrace();
+} finally {
+	if (rs != null)
+		try {
+			rs.close();
+		} catch (SQLException e) {
+		}
+	if (pstmt != null)
+		try {
+			pstmt.close();
+		} catch (SQLException e) {
+		}
+	if (con != null)
+		try {
+			con.close();
+		} catch (SQLException e) {
+		}
+}
+return articleList;
+}
 
 }

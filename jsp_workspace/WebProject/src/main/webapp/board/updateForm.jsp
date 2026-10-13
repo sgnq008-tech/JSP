@@ -27,7 +27,7 @@
 					<input type="text" size="12" maxlength="12"
 						name="writer" value="${article.writer}"> 
 					
-					<input type="hidden" name="num" value="${article.num"></td>
+					<input type="hidden" name="num" value="${article.num}"></td>
 				</tr>
 
 				</tr>

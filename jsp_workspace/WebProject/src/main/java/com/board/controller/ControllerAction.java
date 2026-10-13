@@ -78,8 +78,12 @@ public class ControllerAction extends HttpServlet {
         requestPro(request, response);
     }
     
+    
+    
     protected void requestPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String view = null;
+    	request.setCharacterEncoding("UTF-8");
+    	
+    	String view = null;
         CommandAction com = null;
         
         try {

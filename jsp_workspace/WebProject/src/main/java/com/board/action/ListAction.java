@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.board.model.BoardDAO;
-import com.board.model.BoardVO; // BoardDAO도 같은 BoardVO를 import 해야 함
+import com.board.model.BoardVO;
 
 public class ListAction implements CommandAction {
 
@@ -31,16 +31,38 @@ public class ListAction implements CommandAction {
 		// 2. 페이지당 보여줄 게시글 수 및 범위 계산
 		int pageSize = 10;
 		int startRow = (currentPage - 1) * pageSize + 1; // 한 페이지의 시작 글 번호
-		int endRow = currentPage * pageSize;             // 한 페이지의 마지막 글 번호
+		int endRow = currentPage * pageSize;           // 한 페이지의 마지막 글 번호
 
-		// 3. 전체 글 개수 조회 및 페이징된 글 목록 가져오기
-		BoardDAO dbPro = BoardDAO.getInstance();
-		int count = dbPro.getArticleCount();
+		// 3. 검색 파라미터 처리
+		String find = request.getParameter("find");
+		String find_box = request.getParameter("find_box");
 
-		List<BoardVO> articleList = null;
-		if (count > 0) {
-			articleList = dbPro.getArticles(startRow, endRow);
+		if (find == null || find.trim().equals("")) {
+			find = "no";
 		}
+		if (find_box == null || find_box.trim().equals("")) {
+			find_box = "no";
+		}
+
+		BoardDAO dbPro = BoardDAO.getInstance();
+		int count = 0;
+		List<BoardVO> articleList = null;
+
+		// 4. 검색 조건에 따른 글 개수 및 목록 조회 분기 처리
+		if (find.equals("no")) {
+			// 검색어가 없는 경우: 전체 글 개수 및 전체 목록 조회
+			count = dbPro.getArticleCount();
+			if (count > 0) {
+				articleList = dbPro.getArticles(startRow, endRow);
+			}
+		} else {
+			// 검색어가 있는 경우: 검색된 글 개수 및 검색 목록 조회
+			count = dbPro.getArticleCount(find, find_box);
+			if (count > 0) {
+				articleList = dbPro.getArticles(find, find_box, startRow, endRow);
+			}
+		}
+
 		if (articleList == null) {
 			articleList = Collections.emptyList();
 		}
@@ -48,7 +70,7 @@ public class ListAction implements CommandAction {
 		// 화면에 출력할 가상의 글 번호 계산
 		int number = count - (currentPage - 1) * pageSize;
 
-		// 4. JSP(View)에서 사용할 데이터를 request 객체에 저장
+		// 5. JSP(View)에서 사용할 데이터를 request 객체에 저장
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("startRow", startRow);
 		request.setAttribute("endRow", endRow);
@@ -56,11 +78,12 @@ public class ListAction implements CommandAction {
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("number", number);
 		request.setAttribute("articleList", articleList);
-
+		request.setAttribute("find", find);
+		request.setAttribute("find_box", find_box);
 		request.setAttribute("bodyback_c", "#e0f8f8"); // 배경색 (연한 민트)
 		request.setAttribute("value_c", "#c0edf8");    // 헤더 및 포인트 색상
 
-		// 5. 이동할 뷰(JSP)의 경로 리턴
+		// 6. 이동할 뷰(JSP)의 경로 리턴
 		return "/board/list.jsp";
 	}
 }
